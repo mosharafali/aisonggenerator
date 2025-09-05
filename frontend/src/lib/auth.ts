@@ -13,8 +13,9 @@ import {
 
 const polarClient = new Polar({
   accessToken: env.POLAR_ACCESS_TOKEN,
-  server: "sandbox",
+  server: process.env.NODE_ENV === "production" ? "production" : "sandbox",
 });
+
 
 export const auth = betterAuth({
   database: prismaAdapter(db, {
