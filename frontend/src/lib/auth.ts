@@ -31,19 +31,19 @@ export const auth = betterAuth({
         checkout({
           products: [
             {
-              productId: "70aa28f3-06db-42d5-a178-8092f87d1572",
+              productId: "1e113f4b-5e68-466e-81d9-8fc69f19063d",
               slug: "small",
             },
             {
-              productId: "e56ca45b-bbd2-45b2-a335-8701d7fedaa7",
+              productId: "20950d11-0e8a-4d8c-8359-397da0435cbc",
               slug: "medium",
             },
             {
-              productId: "0899e19e-5ad9-4600-b116-00f06d9003fc",
+              productId: "e3281224-513b-4aa4-9b37-339c4fd33dff",
               slug: "large",
             },
           ],
-          successUrl: "https://bfc8d0094498.ngrok-free.app",
+          successUrl: "/",
           authenticatedUsersOnly: true,
         }),
         portal(),
@@ -62,13 +62,13 @@ export const auth = betterAuth({
             let creditsToAdd = 0;
 
             switch (productId) {
-              case "70aa28f3-06db-42d5-a178-8092f87d1572":
+              case "1e113f4b-5e68-466e-81d9-8fc69f19063d":
                 creditsToAdd = 10;
                 break;
-              case "e56ca45b-bbd2-45b2-a335-8701d7fedaa7":
+              case "20950d11-0e8a-4d8c-8359-397da0435cbc":
                 creditsToAdd = 25;
                 break;
-              case "0899e19e-5ad9-4600-b116-00f06d9003fc":
+              case "e3281224-513b-4aa4-9b37-339c4fd33dff":
                 creditsToAdd = 50;
                 break;
             }
