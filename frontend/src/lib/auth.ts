@@ -13,7 +13,7 @@ import {
 
 const polarClient = new Polar({
   accessToken: env.POLAR_ACCESS_TOKEN,
-  server: process.env.NODE_ENV === "production" ? "production" : "sandbox",
+  server: "production",
 });
 
 
