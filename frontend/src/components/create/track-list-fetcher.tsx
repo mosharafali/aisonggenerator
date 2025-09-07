@@ -1,7 +1,6 @@
 "use server";
 
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import { getPresignedUrl } from "~/actions/generation";
 import { auth } from "~/lib/auth";
 import { db } from "~/server/db";
@@ -12,9 +11,7 @@ export default async function TrackListFetcher() {
     headers: await headers(),
   });
 
-  if (!session) {
-    redirect("/auth/sign-in");
-  }
+
 
   const songs = await db.song.findMany({
     where: { userId: session?.user?.id },

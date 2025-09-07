@@ -1,5 +1,6 @@
 "use server";
 
+import Image from "next/image";
 import { UserButton } from "@daveyplate/better-auth-ui";
 import {
   Sidebar,
@@ -22,10 +23,25 @@ export async function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-primary mt-4 mb-12 flex flex-col items-start justify-start px-2 text-3xl font-black tracking-widest uppercase">
-            <p>Music</p>
-            <p className="text-lg">Generator</p>
+          <SidebarGroupLabel className="text-primary mt-4 mb-12 flex flex-col items-start justify-start px-2">
+            {/* ✅ Logo */}
+            <div className="mb-4">
+              <Image
+                src="/logo.png" // place logo inside /public/logo.png
+                alt="AI Music Generator Logo"
+                width={20}
+                height={20}
+                priority
+              />
+            </div>
+
+            {/* ✅ Title */}
+            <p className="text-3xl font-black tracking-widest uppercase">
+              AI Music
+            </p>
+            <p className="text-lg"></p>
           </SidebarGroupLabel>
+
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItems />
@@ -33,6 +49,7 @@ export async function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarFooter>
         <div className="mb-2 flex w-full items-center justify-center gap-1 text-xs">
           <Credits />

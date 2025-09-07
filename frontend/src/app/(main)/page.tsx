@@ -1,7 +1,10 @@
-import {  Music } from "lucide-react";
+import {  Loader2, Music } from "lucide-react";
 import { headers } from "next/headers";
+import { Suspense } from "react";
 import { getPresignedUrl } from "~/actions/generation";
+import { SongPanel } from "~/components/create/song-panel";
 import { SongPanel2 } from "~/components/create/song-panel2";
+import TrackListFetcher from "~/components/create/track-list-fetcher";
 import { SongCard } from "~/components/home/song-card";
 import { auth } from "~/lib/auth";
 import { db } from "~/server/db";
@@ -92,10 +95,18 @@ export default async function MainPage() {
 
   return (
     <>
-          <div >
-      <SongPanel2 />
-    
-    </div>
+     <div className="flex h-full flex-col lg:flex-row">
+          <SongPanel2 />
+          <Suspense
+            fallback={
+              <div className="flex h-full w-full items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin" />
+              </div>
+            }
+          >
+            <TrackListFetcher />
+          </Suspense>
+        </div>
     <div className="p-4">
       <h1 className="text-3xl font-bold tracking-tight">Discover Music</h1>
 

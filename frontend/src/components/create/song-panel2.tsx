@@ -117,9 +117,9 @@ export function SongPanel2() {
   };
 
   return (
-    <div className="bg-muted/30 flex w-full flex-col border-r lg:w-full">
+    <div className="bg-muted/30 flex w-full flex-col border-r lg:w-150">
       
-           <h1 className="mx-auto max-w-5xl  text-xl  tracking-normal text-slate-900 sm:text-7xl items-center justify-center text-center mt-10 mb-10">
+           <h1 className="mx-auto max-w-7xl  text-xl  tracking-normal text-slate-900 sm:text-7xl items-center justify-center text-center mt-10 mb-10">
             AI Song & Music Generator{" "}
             <span className="relative whitespace-nowrap text-[#3290EE]">
               
