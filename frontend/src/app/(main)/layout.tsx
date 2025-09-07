@@ -23,9 +23,50 @@ import BreadcrumbPageClient from "~/components/sidebar/breadcrumb-page-client";
 import SoundBar from "~/components/sound-bar";
 
 export const metadata: Metadata = {
-  title: "Home",
-  description: "Music Generator",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: "AI Song Generator | Free AI Music Generator Online",
+  description:
+    "AI Song Generator lets you create original songs instantly. Generate lyrics, melodies, and full tracks in multiple genres using cutting-edge AI technology. Free, fast, and beginner-friendly.",
+  keywords: [
+    "AI song generator",
+    "AI music generator",
+    "AI lyrics creator",
+    "AI song creator free",
+    "generate music with AI",
+    "AI songwriting tool",
+    "AI music software",
+    "text to song",
+    "AI beat maker"
+  ],
+  alternates: {
+    canonical: "https://aisonggenerator.dev",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://aisonggenerator.dev",
+    title: "AI Song Generator | Free AI Music Generator Online",
+    description:
+      "Turn your ideas into music. Generate lyrics, beats, and full songs with AI Song Generator. Explore multiple genres and create music instantly.",
+    images: [
+      {
+        url: "https://aisonggenerator.dev/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AI Song Generator",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@aisonggenerator",
+    title: "AI Song Generator | Free AI Music Generator Online",
+    description:
+      "Generate lyrics, beats, and full songs with AI Song Generator. Free, fast, and beginner-friendly.",
+    images: ["https://aisonggenerator.dev/og-image.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  metadataBase: new URL("https://aisonggenerator.dev"),
 };
 
 const geist = Geist({

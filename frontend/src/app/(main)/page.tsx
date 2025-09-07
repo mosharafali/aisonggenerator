@@ -1,19 +1,16 @@
-import { Music } from "lucide-react";
+import {  Music } from "lucide-react";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 import { getPresignedUrl } from "~/actions/generation";
+import { SongPanel2 } from "~/components/create/song-panel2";
 import { SongCard } from "~/components/home/song-card";
 import { auth } from "~/lib/auth";
 import { db } from "~/server/db";
 
-export default async function Page() {
+export default async function MainPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  if (!session) {
-    redirect("/auth/sign-in");
-  }
 
   const songs = await db.song.findMany({
     where: {
@@ -31,13 +28,7 @@ export default async function Page() {
         },
       },
       categories: true,
-      likes: session.user.id
-        ? {
-            where: {
-              userId: session.user.id,
-            },
-          }
-        : false,
+      likes: true,
     },
     orderBy: {
       createdAt: "desc",
@@ -100,6 +91,11 @@ export default async function Page() {
   }
 
   return (
+    <>
+          <div >
+      <SongPanel2 />
+    
+    </div>
     <div className="p-4">
       <h1 className="text-3xl font-bold tracking-tight">Discover Music</h1>
 
@@ -129,5 +125,6 @@ export default async function Page() {
           </div>
         ))}
     </div>
+    </>
   );
 }
