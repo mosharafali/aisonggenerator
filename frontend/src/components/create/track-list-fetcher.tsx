@@ -9,20 +9,16 @@ import { TrackList } from "./track-list";
 export default async function TrackListFetcher() {
   const session = await auth.api.getSession({
     headers: await headers(),
-  });
-
-
+  }).catch(() => null);
 
   const songs = await db.song.findMany({
-    where: { userId: session?.user?.id },
+    where: session?.user?.id
+      ? { userId: session.user.id }
+      : { published: true }, // guest mode
     include: {
-      user: {
-        select: { name: true },
-      },
+      user: { select: { name: true } },
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
 
   const songsWithThumbnails = await Promise.all(

@@ -63,39 +63,36 @@ export async function queueSong(
   });
 }
 
-export async function getPlayUrl(songId: string) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
 
-  if (!session) redirect("/auth/sign-in");
-
-  const song = await db.song.findUniqueOrThrow({
+export async function getPlayUrl(songId: string, userId?: string) {
+  const song = await db.song.findFirstOrThrow({
     where: {
       id: songId,
-      OR: [{ userId: session.user.id }, { published: true }],
-      s3Key: {
-        not: null,
-      },
+      OR: [
+        { published: true },
+        ...(userId ? [{ userId }] : []), // owner can access private songs
+      ],
     },
     select: {
       s3Key: true,
+      published: true,
+      userId: true,
     },
   });
 
-  await db.song.update({
-    where: {
-      id: songId,
-    },
-    data: {
-      listenCount: {
-        increment: 1,
-      },
-    },
-  });
+  if (!song.s3Key) throw new Error("Audio file not found");
 
-  return await getPresignedUrl(song.s3Key!);
-}
+  // increment listen count only for published songs
+  if (song.published) {
+    await db.song.update({
+      where: { id: songId },
+      data: { listenCount: { increment: 1 } },
+    });
+  }
+
+  return await getPresignedUrl(song.s3Key);
+};
+
 
 export async function getPresignedUrl(key: string) {
   const s3Client = new S3Client({
