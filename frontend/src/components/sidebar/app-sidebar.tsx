@@ -17,6 +17,7 @@ import { Credits } from "./credits";
 import SidebarMenuItems from "./sidebar-menu-items";
 import { User } from "lucide-react";
 import Upgrade from "./upgrade";
+import Link from "next/link";
 
 export async function AppSidebar() {
   return (
@@ -26,13 +27,15 @@ export async function AppSidebar() {
           <SidebarGroupLabel className="text-primary mt-4 mb-12 flex flex-col items-start justify-start px-2">
             {/* ✅ Logo */}
             <div className="mb-4">
-              <Image
-                src="/logo.png" // place logo inside /public/logo.png
-                alt="AI Music Generator Logo"
-                width={20}
-                height={20}
-                priority
-              />
+              <Link href={"/"}>
+                <Image
+                  src="/logo.png" // place logo inside /public/logo.png
+                  alt="AI Music Generator Logo"
+                  width={30}
+                  height={30}
+                  priority
+                />
+              </Link>
             </div>
 
             {/* ✅ Title */}
