@@ -32,6 +32,14 @@ export const auth = betterAuth({
         checkout({
           products: [
             {
+              productId: "651df1a8-0868-42f1-afe6-454da9d6ec5d",
+              slug: "nano",
+            },
+            {
+              productId: "90f58a6d-79ad-4b98-b30a-a6178eb30d2d",
+              slug: "start",
+            },
+            {
               productId: "1e113f4b-5e68-466e-81d9-8fc69f19063d",
               slug: "small",
             },
@@ -63,14 +71,20 @@ export const auth = betterAuth({
             let creditsToAdd = 0;
 
             switch (productId) {
+              case "651df1a8-0868-42f1-afe6-454da9d6ec5d":
+                creditsToAdd = 20;
+                break;
+                case "90f58a6d-79ad-4b98-b30a-a6178eb30d2d":
+                creditsToAdd = 50;
+                break;
               case "1e113f4b-5e68-466e-81d9-8fc69f19063d":
-                creditsToAdd = 10;
+                creditsToAdd = 100;
                 break;
               case "20950d11-0e8a-4d8c-8359-397da0435cbc":
-                creditsToAdd = 25;
+                creditsToAdd = 150;
                 break;
               case "e3281224-513b-4aa4-9b37-339c4fd33dff":
-                creditsToAdd = 50;
+                creditsToAdd = 250;
                 break;
             }
 
